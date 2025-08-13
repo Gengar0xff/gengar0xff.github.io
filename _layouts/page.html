@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gengar :: {{ page.title }}</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+
+<body>
+  <div class="side"></div>
+
+  <div class="content">
+    <button id="themeBtn" class="theme" onclick="changeTheme();">🌙</button>
+
+    <header>
+      {% include banner.html %}
+    </header>
+
+    <main>
+      <h1>{{page.title}}</h1>
+      {{content}}
+    </main>
+
+    <footer>
+      <table>
+        <thead>
+          <tr>
+            <th>Twitter</th>
+            <th>Github</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://x.com/gengar0xff">hxxp://x[.]com/gengar0xff</a></td>
+            <td><a href="https://github.com/gengar0xff">hxxp://github[.]com/gengar0xff</a></td>
+          </tr>
+      </table>
+    </footer>
+  </div>
+
+  <div class="side"></div>
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+      const isDarkTheme = localStorage.getItem("theme") === "dark";
+      document.documentElement.style.setProperty('--dark-theme', isDarkTheme);
+      document.getElementById("themeBtn").innerText = (isDarkTheme) ? "🌞" : "🌛";
+    });
+
+    function changeTheme() {
+      const style = document.documentElement.style;
+      const themeBtn = document.getElementById("themeBtn");
+      if (localStorage.getItem("theme") === "light") {
+        localStorage.setItem("theme", "dark");
+        style.setProperty('--dark-theme', true);
+        themeBtn.innerText = "🌞";
+      } else {
+        localStorage.setItem("theme", "light");
+        style.setProperty('--dark-theme', false);
+        themeBtn.innerText = "🌛";
+      }
+    }
+  </script>
+</body>
+
+</html>
